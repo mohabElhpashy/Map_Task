@@ -15,21 +15,23 @@ import Marker from "./Components/Marker";
 
 const App = () => {
   const arr=[];
-  const center={lat:-25.363,lng:131.044}
+  const center={lat:0,lng:0}
   const zoom=4
   const positions=[{lat:-26.363,lng:131.044},{lat:-27.363,lng:131.044}]
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
-  const CLICKS=[{lat:-25.363,lng:131.044}
-    ,{lat:-25.363,lng:131.044},{lat:-25.363
-      ,lng:131.044},{lat:-25.363,lng:131.044}
-      ,{lat:-25.363,lng:131.044}]
+  // const CLICKS=[{lat:-25.363,lng:131.044}
+  //   ,{lat:-25.363,lng:131.044},{lat:-25.363
+  //     ,lng:131.044},{lat:-25.363,lng:131.044}
+  //     ,{lat:-25.363,lng:131.044}]
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // arr.push(e.latLng)
     setClicks([...clicks,e.latLng]);
   };
   // console.log("myarr",arr)
-
+const myMark=(index:number)=>{
+  alert(index)
+}
   
   return(
     <>
@@ -38,9 +40,12 @@ const App = () => {
       center={center} 
       zoom={zoom}
       onClick={onClick}
+      clicks={clicks}
       >
-        {clicks.map(pos=>(
-      <Marker position={pos}/>
+        {clicks.map((pos,index)=>(
+      <Marker position={pos}
+      //  click={myMark}
+       />
 
         ))}
       </Map>

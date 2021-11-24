@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 function Marker(
     {position,map}:
     {position:google.maps.LatLng,
@@ -14,6 +14,6 @@ setMarker( new google.maps.Marker())
  {  marker.setMap(map)
    marker.setPosition(position)}
 
-    return null
+    return <h1>dasfa</h1>
 }
 export default Marker
