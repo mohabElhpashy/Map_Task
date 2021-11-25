@@ -26,6 +26,7 @@ const App = () => {
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // arr.push(e.latLng)
+    // alert(clicks[0])
     setClicks([...clicks,e.latLng]);
   };
   // console.log("myarr",arr)
@@ -43,7 +44,7 @@ const myMark=(index:number)=>{
       clicks={clicks}
       >
         {clicks.map((pos,index)=>(
-      <Marker position={pos}
+      <Marker key={index} onClick={onClick} position={pos}
       //  click={myMark}
        />
 

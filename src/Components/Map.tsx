@@ -21,27 +21,27 @@ function addLine(): void {
   flightPath.setMap(map);
 
 }
-// const flightPathCoordinates: google.maps.LatLng[] = clicks
+const flightPathCoordinates: google.maps.LatLng[] = clicks
 
-const flightPathCoordinates=[
-  {
-    lat: 22.06527806776582,
-    lng: -21.26953125
-  },
+// const flightPathCoordinates=[
+//   {
+//     lat: 22.06527806776582,
+//     lng: -21.26953125
+//   },
   
-  {
-    lat: 16.06692895745012,
-    lng: -38.12255859375
-  },
-  {
-    lat: 6.970049417296232,
-    lng: -21.4892578125
-  },
-  {
-    lat: 22.06527806776582,
-    lng: -21.26953125
-  }
-]
+//   {
+//     lat: 16.06692895745012,
+//     lng: -38.12255859375
+//   },
+//   {
+//     lat: 6.970049417296232,
+//     lng: -21.4892578125
+//   },
+//   {
+//     lat: 22.06527806776582,
+//     lng: -21.26953125
+//   }
+// ]
 flightPath = new google.maps.Polyline({
   path: flightPathCoordinates,
   geodesic:true,
