@@ -5,13 +5,14 @@ let polygon: google.maps.Polygon;
 type MarkerStruct ={
     position: google.maps.LatLngLiteral[],
     map?: google.maps.Map,
-    // onClick?: (e: google.maps.MapMouseEvent) => void,
-    // clicks: google.maps.LatLng[],
-    // remove: boolean,
-    // INDEX: google.maps.LatLng,
-    // is_f_Point:boolean
+    color:string,
+    INDEX,
+    allDta,
+    getClick
+clickPoly?:()=>void
+ 
 }
-function Poly({ position, map }:MarkerStruct) {
+function Poly({ position, map,color,INDEX,allDta,getClick }:MarkerStruct) {
     function addline() {
         flightPath.setMap(map)
     }
@@ -20,38 +21,34 @@ function Poly({ position, map }:MarkerStruct) {
         polygon.setMap(map)
     }
 
-    console.log("POSOSOSOSOOS",position)
     flightPath= new google.maps.Polyline({
         path:position,
-        strokeColor: "#000",
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-        clickable: true
+        geodesic: false,
+        strokeWeight: 1,
+        map: map
     });
      polygon =  new google.maps.Polygon({
          paths:position,
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#000",
-        fillOpacity: 0.35,
+         geodesic: false,
+         strokeWeight: 1,
+         map: map,
+         fillColor:color
     });
     
-    const [draw, setDraw] = useState<google.maps.Polygon | null>(null)
-    useEffect(() => { setDraw(new google.maps.Polygon()) }, [])
+    const [draw, setDraw] = useState<google.maps.Polyline | null>(null)
+    useEffect(() => { setDraw(new google.maps.Polyline()) }, [])
     if (draw) {
         draw.setMap(map)
     }
-    useEffect(() => {
-        // if (draw) {
-        //     ["click"].forEach((addline) => {
-        //         google.maps.event.clearListeners(draw, addline)
-        //         addline
-        //     })
-           
-        // }
+    google.maps.event.addListener(polygon, 'click',function() {
+        getClick(INDEX)
+        document.getElementById("context_menu").style.display="flex"
+    }
+    );  
+    useEffect(() => {   
         addline()
         addColor()
-    }, [addColor,]);
+    }, []);
 
     return null
 }

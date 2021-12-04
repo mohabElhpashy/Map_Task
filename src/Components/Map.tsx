@@ -5,7 +5,7 @@ function Map(
   { center, zoom, children, onClick, clicks }:
     {
       center: google.maps.LatLngLiteral,
-      zoom: number,
+      zoom
       clicks: google.maps.LatLng[],
       children: ReactNode,
       onClick?: (e: google.maps.MapMouseEvent) => void
@@ -18,7 +18,7 @@ function Map(
   const flightPathCoordinates = clicks
 
   useEffect(() => {
-    setMap(new window.google.maps.Map(ref.current!, {}))
+    setMap(new window.google.maps.Map(ref.current!, {gestureHandling:"cooperative"}))
   }, [])
   if (map) {
     map.setCenter(center)
@@ -30,8 +30,6 @@ function Map(
         google.maps.event.clearListeners(map, eventName)
         if (onClick) {
           map.addListener("click", onClick);
-
-
         }
       });
     }
